@@ -1,0 +1,244 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="../term.css"/>
+
+</head>
+
+<body class="f9 b9">
+<pre>
+<span class="bold">diff --git a/Helpers/Characters/God.ini b/Helpers/Characters/God.ini</span>
+<span class="bold">index 8932663..768cd56 100644</span>
+<span class="bold">--- a/Helpers/Characters/God.ini</span>
+<span class="bold">+++ b/Helpers/Characters/God.ini</span>
+<span class="f6">@@ -23,21 +23,23 @@</span>
+    b_shadow_har_int=1.3
+    b_harmony_per=1.5
+    b_metal_har=1.8
+    b_wind_har_act=1.2
+    b_wind_har_opp=1.3
+    <span class="f2">b_water_har=0.5</span>
+    b_eth_har=0.5
+    b_fou_dmg=0.3
+    b_add_momentum=2
+    b_momentum_dmg=3
+    b_momentum_speed=1
+    b_momentum_max=20
+    b_momentum_esq=2
+    b_momentum_sec=0.15
+    <span class="f1">b_impact=4.5</span>
+<span class="f1">    b_impact_size=0.13</span>
+<span class="f1">    b_adagio=1</span><span class="f2">b_impact=2.2</span>
+<span class="f2">    b_impact_size=0.02</span>
+<span class="f2">    b_impact_size_base=4</span>
+<span class="f2">    b_adagio=2</span>
+    b_tempo_dep=4
+    b_tempo_degre=0.3
+    b_tempo=30
+    b_tempo_max=240
+    b_phenix_reg=45
+<span class="bold">diff --git a/Helpers/Characters/frene.ini b/Helpers/Characters/frene.ini</span>
+<span class="bold">index bde6b0e..67004be 100644</span>
+<span class="bold">--- a/Helpers/Characters/frene.ini</span>
+<span class="bold">+++ b/Helpers/Characters/frene.ini</span>
+<span class="f6">@@ -40,11 +40,11 @@</span>
+        Si vous ne pouvez plus agir, votre aspect gagne [[floor({simu}{b_simulation_aspect})]] actions supplémentaires jusqu'à la reprise de contrôle du personnage.
+        Reduit les dégats subits de [[floor({garde}*{a_air}/{b_garde_aspect})]]
+        {prelude} fois par combat, si le personnage devrait subir des dégâts létaux, Stase Cryogénique est utilisé sur lui-même a la place.
+        Il vous reste {colere} utilisations de **[Colere de l'Aspect]**
+    others=
+    macro={vset} {you} --temp_dmg|0 --temp_pdmg|0 --temp_esq|0 --temp_def|0 --temp_pdef|0 --regen|0 --dot|0 --frostdamage|0 --frostshield|0 --mana|@{{you}|mana|max} --pctreceived_b|0 --pctreceived_s|0 <span class="f1">--general_item_shield3|[[floor({garde}*{a_air}/{b_garde_aspect})]]</span><span class="f2">--general_item_shield3|[[floor({garde}*(@{Jinyah|elem_air_tot}/2+@{Eisvogel|elem_air_tot})/{b_garde_aspect})]]</span> --colere_stacks|[[{colere}{b_colere_max}]] --elem_omega|0 --pcthealing|100 --shieldregen|0 --grieviouswounds|1
+
+[turn]
+    description=Macro de début de tour
+    self=
+    others=
+<span class="f6">@@ -111,13 +111,14 @@</span>
+    cost=2
+    mp=2
+    description=
+    self=
+    others=**Revigoration** [Coût : {mp}]  Soigne {target} de [[floor({marques_s}*{X}*{a_eau}/{b_revigoration})]] points de vie.
+        <span class="f2">[Appliquer le soin](!&amp;#13;{m}healit [[{@{target|target|Life_Points}+floor(@{{you}|pcthealing}*({marques_s}*{X}*{a_eau}/{b_revigoration})/100),@{target|target|Life_Points|max}}kl1]])</span>
+    special=
+    macro={manasub}-{mp}
+        #!setattr --charid @{target|target|character_id} <span class="f1">--Life_Points|[[{@{target|target|Life_Points}+{marques_s}*{X}*{a_eau}/{b_revigoration},@{target|target|Life_Points|max}}kl1]]</span><span class="f2">--Life_Points|[[{floor(@{{you}|pcthealing}*(@{target|target|Life_Points}+{marques_s}*{X}*{a_eau}/{b_revigoration})/100),@{target|target|Life_Points|max}}kl1]]</span>
+
+[transfert_froid]
+    level=Avancée
+    type=Actif/Instant
+    display_name=Transfert de Froid
+<span class="f6">@@ -268,11 +269,11 @@</span>
+                Si un ennemi voit son attaque bloquée ou son sort réfléchi,
+                il subit un effet Morsure de l’hiver.
+    self=[Placer le mur](!&amp;#13;{m}place_aoe Icewall)
+    others= Un mur de Glace apparaît, protégeant des attaques à venir.
+    special=
+    macro=**Mur réfléchissant** [Coût : {mp}] Crée un mur de [[{X}*{b_mur_size_h}]] metres de haut, [[{X}]] metres d'épaisseur et [[{X}*{b_mur_size}]] mètres de large. Bloque toutes les attaques physiques à hauteur de <span class="f1">[[{X}*({a_terre}+{a_air})*{b_mur}]]</span><span class="f2">[[floor({X}*({a_terre}+{a_air})*{b_mur})]]</span> dégâts et tout les dégâts magiques a hauteur de <span class="f1">[[{X}*({a_glace}+{a_air})*{b_mur}]]</span><span class="f2">[[floor({X}*({a_glace}+{a_air})*{b_mur})]]</span> dégâts le mur possède [[floor({X}*({a_air}+{a_bois})*{b_mur_hp})]] points de vie par 2³.
+        {manasub}-{mp}
+
+[vague_glace]
+    level=Simple
+    type=Actif/Instant/Debuff
+<span class="f6">@@ -391,11 +392,11 @@</span>
+    cost=8
+    mp=13
+    X=@{Eisvogel|repeating_magic-aspected-skills_-Lk-HfYpl0l1uj9dUqVC_magic_aspected_skilllevel}
+    description=Une grande explosion de glace se manifeste autour de {target}.
+    self=Tous les cibles prises dans l'explosion prennent des dégâts et subissent jusqu'a {X} effets Morsure de l'Hiver. La cible ne peut subir des marques jusqu'a la fin du tour.
+        [Placer <span class="f1">la brume](!&amp;#13;{m}place_aoe</span><span class="f2">l'explosion](!&amp;#13;{m}place_aoe</span> Freeze)
+    others=
+    special=
+    macro=**Explosion de Glace** [Coût : {mp}] Les fragments de glace autour de @{target|T1|character_name} explosent, manifestant une énorme explosion de glace qui inflige [[floor(({X}+{b_explosion_base})*({a_feu}+{a_glace})*@{target|T1|frostdamage}*{b_explosion_dmg})]] dégats a la cible, et inflige [[floor(({X}+{b_explosion_base})*({a_feu}+{a_glace})*@{target|T1|frostdamage}*{b_explosion_dmg_aoe})]] dégats que dans une zone de [[floor(@{target|T1|frostdamage}*{b_explosion_size})]] mètres autour d'elle. La cible perd tous ses effets Morsure de l'Hiver.
+        !setattr --charid @{target|T1|character_id} --frostdamage|0
+        {manasub}-{mp}
+<span class="bold">diff --git a/Helpers/Characters/npc.ini b/Helpers/Characters/npc.ini</span>
+<span class="bold">index ee45d31..f8dec8a 100644</span>
+<span class="bold">--- a/Helpers/Characters/npc.ini</span>
+<span class="bold">+++ b/Helpers/Characters/npc.ini</span>
+<span class="f6">@@ -15,25 +15,25 @@</span>
+
+[attaque_macro]
+    description=Macro d'attaque
+    self=
+    others=
+    macro=!crit ?{Nombre de des <span class="f1">d'attaque}</span><span class="f2">d'attaque|0}</span> P @{selected|general_effective_Perfection} c @{selected|crit_level} M @{selected|skillcost_Technique_martiale} @{selected|general_effective_Technique_martiale} E @{selected|skillcost_Exploiter_les_points_faibles} @{selected|general_effective_Exploiter_les_points_faibles} F @{selected|general_effective_Fauchage} D @{selected|general_effective_Coup_dechirant} H @{selected|base_damage_dices} H @{selected|exal_damage_dices} A @{selected|Skill_general_attribute_select_attaque} s @{selected|general_attack_threshold} l @{selected|general_attack_addall} a a n @{selected|undescored_name} + @{selected|additional_damage_dices} + @{selected|general_effective_weapon1} + @{selected|general_effective_weapon2} t @{selected|transcendence} + @{selected|general_effective_weapon3} f @{selected|pctinflicted} f @{selected|pctinflicted_s} f @{selected|pctinflicted_b} + @{selected|temp_dmg} f @{selected|temp_pdmg}
+        !setattr --charid @{selected|character_id} --temp_pdmg|0 --temp_dmg|0
+
+[esquive_macro]
+    description=Macro d'esquive
+    self=
+    others=
+    macro=!crit ?{Nombre de des <span class="f1">d'esquive}</span><span class="f2">d'esquive|0}</span> I @{selected|skillcost_Defense_impenetrable} @{selected|general_effective_Defense_impenetrable} R @{selected|general_effective_Rempart_parfait} c @{selected|crit_level} H @{selected|base_dodge_dices} A @{selected|Skill_general_attribute_select_dodge} t @{selected|transcendence} s ?{selected|Seuil <span class="f1">d'esquive}</span><span class="f2">d'esquive|0}</span> - ?{Dégats a esquiver|0} a e n @{selected|undescored_name} v @{selected|pctreceived} v @{selected|pctreceived_s} v @{selected|pctreceived_b} + @{selected|temp_esq}
+        !setattr --charid @{selected|character_id} --temp_esq|0
+
+[parade_macro]
+    description=Macro de parade
+    self=
+    others=
+    macro=!crit ?{Nombre de des de <span class="f1">defense}</span><span class="f2">defense|0}</span> I @{selected|skillcost_Defense_impenetrable} @{selected|general_effective_Defense_impenetrable} R @{selected|general_effective_Rempart_parfait} c @{selected|crit_level} S @{selected|general_skilllevel_Encaissement} @{selected|general_effective_Encaissement} H @{selected|base_defense_dices} H @{selected|exal_defense_dices} s @{selected|general_defense_threshold} l @{selected|general_defense_addall} A @{selected|Skill_general_attribute_select_defense} t @{selected|transcendence} - ?{Dégats a parer|0} a d n @{selected|undescored_name} + @{selected|general_effective_shield1} + @{selected|general_effective_shield2} + @{selected|general_effective_shield3} v @{selected|pctreceived} v @{selected|pctreceived_s} v @{selected|pctreceived_b} v @{selected|temp_pdef} + @{selected|temp_def} + ?{Type d'attaque|Physique,@{selected|general_skilllevel_res_physique_effective}|Magique,@{selected|general_skilllevel_res_magique_effective}|Voile,@{selected|general_skilllevel_res_voile_effective}|Divine,@{selected|general_skilllevel_res_divine_effective}|Existence,0} + @{selected|general_skilllevel_res_omega_effective}
+        !setattr --charid @{selected|character_id} --temp_pdef|0 --temp_def|0
+
+[parade_brute_macro]
+    description=Macro de parade
+    self=
+<span class="f6">@@ -43,11 +43,11 @@</span>
+
+[tir_macro]
+    description=Macro de Tir
+    self=
+    others=
+    macro=!crit ?{Nombre de des de <span class="f1">tir}</span><span class="f2">tir|0}</span> T @{selected|skillcost_Tir_precis} @{selected|general_effective_Tir_precis} i @{selected|general_effective_Tir_implacable} M @{selected|skillcost_Technique_martiale} @{selected|general_effective_Technique_martiale} E @{selected|skillcost_Exploiter_les_points_faibles} @{selected|general_effective_Exploiter_les_points_faibles} L @{selected|base_shoot_dices} c @{selected|crit_level} l @{selected|add_shoot_dices} t @{selected|transcendence} s ?{Seuil de tir|6} a a n @{selected|undescored_name} f @{selected|pctinflicted} f @{selected|pctinflicted_s} f @{selected|pctinflicted_b}
+
+[place_aoe]
+    description=
+    self=
+    others=
+<span class="f6">@@ -115,6 +115,18 @@</span>
+
+[resist]
+    description=
+    self=
+    others=
+    macro=&amp;{template:d10skillcheck}{{name=@{selected|character_name}}} {{roll_name=Jet de résistance}} {{result=[[?{Type|Magique, @{selected|general_skilllevel_res_magique}|Physique, <span class="f1">@{selected|general_skilllevel_res_physique}|Voile,</span><span class="f2">@{selected|general_skilllevel_res_physique}|Mentale, @{selected|general_skilllevel_res_mentale}|Voile,</span> @{selected|general_skilllevel_res_voile}|Divine, @{selected|general_skilllevel_res_divine}|Existence, @{selected|general_skilllevel_res_omega}}+(?{Caractèristique|Volonté, @{selected|base-Volonte}+@{selected|exal-Volonte}|Force, @{selected|base-Force}+@{selected|exal-Force}|Spéciale, @{selected|base-custom}+@{selected|exal-custom}})-d?{Des|10}cs1]]}}
+
+<span class="f2">[aurore]</span>
+<span class="f2">    description=</span>
+<span class="f2">    self=</span>
+<span class="f2">    others=</span>
+<span class="f2">    macro=!setattr --sel --mod --temp_def|</span>
+
+<span class="f2">[healit]</span>
+<span class="f2">    description=</span>
+<span class="f2">    self=</span>
+<span class="f2">    others=</span>
+<span class="f2">    macro=!setattr --charid @{target|character_id} --Life_Points|</span>
+<span class="bold">diff --git a/Helpers/Characters/reginald.ini b/Helpers/Characters/reginald.ini</span>
+<span class="bold">index 7d721e7..4cf8c89 100644</span>
+<span class="bold">--- a/Helpers/Characters/reginald.ini</span>
+<span class="bold">+++ b/Helpers/Characters/reginald.ini</span>
+<span class="f6">@@ -315,11 +315,11 @@</span>
+    self =
+    others = **[Arcane avancée : Tenacitas]** Un grand rai de lumière entoure {target} augmentant ses defenses.
+    X = @{Reginald|repeating_magic-arcanist-skills_-LkQWmyQBIj1IRtasXuW_magic_arcanist_skilllevel}
+    Y =
+    special=
+    macro =!setattr --name {target} <span class="f2">--fb-header &quot;Tenacitas&quot; --fb-content &quot;L'arcane augmente les resistances de _CHARNAME_ de _TCURJ_&quot;</span> --pctreceived_s|[[{@{target|target|pctreceived_s}- floor(({power}+{bois})*{b_tenacitas}),-99}kh1]]
+
+[major:marcor]
+    cost=16
+    X = @{Reginald|repeating_magic-arcanist-skills_-LkQWs05EBazluf88DO6_magic_arcanist_skilllevel}
+    level = Avancée
+<span class="bold">diff --git a/Helpers/Characters/tian.ini b/Helpers/Characters/tian.ini</span>
+<span class="bold">index 83c57d8..d376186 100644</span>
+<span class="bold">--- a/Helpers/Characters/tian.ini</span>
+<span class="bold">+++ b/Helpers/Characters/tian.ini</span>
+<span class="f6">@@ -108,13 +108,13 @@</span>
+
+[energie_et_matiere]
+    level        = Ultime
+    display_name = D’énergie et de matière
+    description  = Permet de régénérer contre du Qi le corps de l’utilisateur et/ou toute structure en harmonie(mémorisée) avec l’utilisateur.
+    self         = Vous régenerez [[{X}*{b_energymat_heal}]] points de vie, cette regeneration ne peut etre réduite vous pouvez regenerer une structure auquelle vous etes en harmonie a hauteur de <span class="f1">[[{X}d10]]</span><span class="f2">{X}d10</span> points de vie.
+    type         = Actif/Action et Réaction
+    others       = **D’énergie et de matière** [Coût : {b_energy_cost} {D}] *{you} se régénère de [[{X}*{b_energymat_heal}]] PV irréductibles, @{target|T1|character_name} reçoit un soin supplémentaire de <span class="f1">{X}d10</span><span class="f2">[[{X}d10]]</span> PV irréductibles.*
+    cost         = 8
+    X            = @{Tian-Hu|repeating_general-combat-skills_-LkUznJg8I5Pu2dcLVPr_general_combat_skilllevel}
+    macro        = !setattr --name {you} --mod --qi|-{b_energy_cost}
+     !setattr --name {you} --Life_Points|[[{@{{you}|Life_Points}+{X}*{b_energymat_heal},@{{you}|Life_Points|max}}kl1]]
+    special      =
+<span class="bold">diff --git a/Helpers/Characters/voile.ini b/Helpers/Characters/voile.ini</span>
+<span class="bold">index 71d4a2b..026ca7b 100644</span>
+<span class="bold">--- a/Helpers/Characters/voile.ini</span>
+<span class="bold">+++ b/Helpers/Characters/voile.ini</span>
+<span class="f6">@@ -52,11 +52,11 @@</span>
+
+[show_harmony]
+    description=
+    self=
+    others=
+    macro=/w {you} &amp;{template:default} {{name=Etat d'harmonie}} {{initiative=+[[{harmony}*{b_harmony_init}]]}} {{perception=+[[floor({harmony}*{b_harmony_per})]]}} {{Discretion=+[[floor({harmony}*{b_shadow_har_disc})]]}} {{Nombre d'actions=[[@{Voile|base-Agilite}+@{Voile|exal-Agilite}+@{Voile|general_skilllevel_supernatural_reflexes}*2+floor({harmony}*{b_wind_har_act})]]}} {{Attaques d'opportunités=+[[floor({harmony}*{b_wind_har_opp})]]seuil}} {{RM=+[[floor({harmony}*{b_metal_har})]]}} {{Esquive=-[[floor({b_eth_har}*{harmony})]]DD&amp;s}} {{Bonus action <span class="f1">mouvement=[[@{Voile|repeating_skills_-Lk0Li-kTIahFB0V9Iny_general_skilllevel}]]</span><span class="f2">mouvement=[[floor({b_water_har}*@{Voile|repeating_skills_-Lk0Li-kTIahFB0V9Iny_general_skilllevel})]]</span> degrés}}
+
+[change_harmony]
+    self=
+    others=
+    macro={vset} {you} --{Discretion_m}|[[{discretion}+floor({harmony}*{b_shadow_har_disc})]] --actions||[[@{Voile|base-Agilite}+@{Voile|exal-Agilite}+@{Voile|general_skilllevel_supernatural_reflexes}*2+floor({harmony}*{b_wind_har_act})]] --{Resistance_mentale_m}|[[floor({Resistance_mentale}+{harmony}*{b_metal_har})]] --Initiative|[[{initiative}+floor({b_harmony_init}*{harmony})]]
+<span class="f6">@@ -69,11 +69,11 @@</span>
+        !setattr --name Voile --momentum_dmg|[[{b_momentum_dmg}*{momentum}]] --momentum_par|[[{b_momentum_dmg}*{momentum}]] --momentum_esq|[[{b_momentum_esq}*{momentum}]] --{Course_m}|[[floor({Course}+{momentum}*{b_momentum_sec})]] --{Saut_m}|[[floor({Saut}+{momentum}*{b_momentum_sec})]] --{Accrobatie_m}|[[floor({Accrobatie}+{momentum}*{b_momentum_sec})]]
+
+[change_momentum]
+    self=
+    others=
+    macro=!setattr --name Voile <span class="f1">--momentum|[[{{b_momentum_max}*{momentum_max},{momentum}+1}kl1]]</span><span class="f2">--momentum|[[{{b_momentum_max}*{momentum_max},{momentum}+{b_add_momentum}}kl1]]</span> --momentum_dmg|[[{b_momentum_dmg}*({momentum}+{b_add_momentum})]] --momentum_par|[[{b_momentum_dmg}*({momentum}+{b_add_momentum})]] --momentum_esq|[[{b_momentum_esq}*({momentum}+{b_add_momentum})]] --{Course_m}|[[floor({Course}+{momentum}*{b_momentum_sec})]] --{Saut_m}|[[floor({Saut}+{momentum}*{b_momentum_sec})]] --{Accrobatie_m}|[[floor({Accrobatie}+{momentum}*{b_momentum_sec})]]
+
+[show_blood]
+    description=
+    others=
+    B = @{Voile|repeating_magic-vital-skills_-Lk0JovHaDzlyDlxntqG_magic_vital_skilllevel}
+<span class="f6">@@ -245,11 +245,11 @@</span>
+    description=Dépense l’ensemble du momentum dans une charge durant une action complète.
+        La puissance de l’impact fracture le sol et inflige de lourds dégâts aux
+        adversaires dans une large zone dépendant du nombre de points de momentum consumés
+    self=Vous perdez votre momentum
+        [Placer l'Impact](!&amp;#13;#place_aoe Impact)
+    others=** Impact ** Un terrible impact sur une zone de <span class="f1">[[floor({b_impact_size}*{X}*{momentum}+0.5)]]</span><span class="f2">[[floor(({X}+{b_impact_size_base})*{b_impact_size}*{momentum})]]</span> mètres infligeant [[{X}*{b_impact}*{momentum}]] dégâts bonus à l’attaque
+    special= Système de stack augmentant en combat et diminuant lors de l’utilisation active des techniques liées.
+    macro = {vset} {you} --mod --temp_dmg|[[{X}*{b_impact}*{momentum}]]
+        {vset} {you} --momentum|0 --momentum_dmg|0 --momentum_par|0 --momentum_esq|0
+
+[adagio]
+<span class="f6">@@ -327,11 +327,11 @@</span>
+        Vous regagnez {b_contresang_soin}*{X} points de vie
+    self=Vous regagnez [[{b_contresang_soin}*{X}*@{Voile|multiple_seals}]] points de vie
+    others=** Contresang ** Le sang jaillit des veines de la main gauche de Voile pour combler les blessures.
+    special =
+    macro = {vset} {door} --mod --blood_gate|[[-{b_contresang_charge_level}*@{Voile|multiple_seals}]]
+        {vset} {you} <span class="f1">--Life_Points|[[{@{{you}|Life_Points}+[[{b_contresang_soin}*@{Voile|multiple_seals}]],@{{you}|Life_Points|max}}kl1]]</span><span class="f2">--Life_Points|[[{@{{you}|Life_Points}+[[floor(@{{you}|pcthealing}*{b_contresang_soin}/100)*@{Voile|multiple_seals}]],@{{you}|Life_Points|max}}kl1]]</span>
+        {reset_multiple}
+
+[Sang_de_Feu]
+    level=Mineure
+    display_name=Sang de Feu
+</pre>
+</body>
+</html>
