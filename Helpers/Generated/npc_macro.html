@@ -59,7 +59,7 @@
 <span class="bold"><span class="f4">[healit]</span></span>
 !setattr --charid @{target|character_id} --Life_Points|
 <span class="bold"><span class="f4">[heal]</span></span>
-!setattr --charid @{target|T1|character_id} --Life_Points|[[{@{target|T1|Life_Points|max},@{target|T1|Life_Points}+floor(?{Soins|0}*@{target|T1|pcthealing}/100)}kl1]]
+!setattr --charid @{target|T1|character_id} --modb --Life_Points|[[@{target|T1|Life_Points}+floor(?{Soins|0}*@{target|T1|pcthealing}/100)]]
 </pre>
 </body>
 </html>
