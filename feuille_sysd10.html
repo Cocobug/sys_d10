@@ -919,11 +919,11 @@
       <input class="sheet-skill_hidden" value= "0" type="number" name="attr_general_effective_Encaissement"/>
       <br/>
 
-      <!--res_physique -->
-      <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_res_physique" disabled="true" value="Résistance Physique" />
-      <input type="number" min="0" value= "0" name="attr_skillcost_res_physique" title="Coût de la compétence" />
-      <input class="sheet-skill_name" value= "0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_res_physique" title="Niveau dans la compétence" />
-      <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_res_physique">
+      <!--res_mentale -->
+      <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_res_mentale" disabled="true" value="Résistance Mentale" />
+      <input type="number" min="0" value= "0" name="attr_skillcost_res_mentale" title="Coût de la compétence" />
+      <input class="sheet-skill_name" value= "0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_res_mentale" title="Niveau dans la compétence" />
+      <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_res_mentale">
         <option value="@{base-Force} + @{exal-Force}">For</option>
         <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
         <option value="@{base-Perception} + @{exal-Perception}">Per</option>
@@ -935,8 +935,8 @@
         <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
         <option value="@{base-custom} + @{exal-custom}">Spé</option>
       </select>
-      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck}{{name=@{character_name}}} {{roll_name=@{general_skill_res_physique}}} {{dice_name=@{dice}}} {{result=[[@{general_skilllevel_res_physique}+(@{Skill_general_attribute_select_res_physique})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{general_skilllevel_res_physique}+(@{Skill_general_attribute_select_res_physique})]]}} "></button>
-      <input class="sheet-skill_hidden" value= "0" type="number" name="attr_general_skilllevel_res_physique_effective"/>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck}{{name=@{character_name}}} {{roll_name=@{general_skill_res_mentale}}} {{dice_name=@{dice}}} {{result=[[@{general_skilllevel_res_mentale}+(@{Skill_general_attribute_select_res_mentale})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{general_skilllevel_res_mentale}+(@{Skill_general_attribute_select_res_mentale})]]}} "></button>
+      <input class="sheet-skill_hidden" value= "0" type="number" name="attr_general_skilllevel_res_mentale_effective"/>
       <br/>
 
       <!--res_magique -->
@@ -957,6 +957,25 @@
       </select>
       <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck}{{name=@{character_name}}} {{roll_name=@{general_skill_res_magique}}} {{dice_name=@{dice}}} {{result=[[@{general_skilllevel_res_magique}+(@{Skill_general_attribute_select_res_magique})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{general_skilllevel_res_magique}+(@{Skill_general_attribute_select_res_magique})]]}} "></button>
       <input class="sheet-skill_hidden" value= "0" type="number" name="attr_general_skilllevel_res_magique_effective"/>
+      <br/>
+      <!--res_physique -->
+      <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_res_physique" disabled="true" value="Résistance Physique" />
+      <input type="number" min="0" value= "0" name="attr_skillcost_res_physique" title="Coût de la compétence" />
+      <input class="sheet-skill_name" value= "0" style="margin-right: 4px;" type="number" min="0" max="10" name="attr_general_skilllevel_res_physique" title="Niveau dans la compétence" />
+      <select class="sheet-skill_select" style="margin-right:4px" name="attr_Skill_general_attribute_select_res_physique">
+        <option value="@{base-Force} + @{exal-Force}">For</option>
+        <option value="@{base-Agilite} + @{exal-Agilite}">Agi</option>
+        <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+        <option value="@{base-Charisme} + @{exal-Charisme}">Cha</option>
+        <option value="@{base-Intelligence} + @{exal-Intelligence}">Int</option>
+        <option value="@{base-Perception} + @{exal-Perception}">Per</option>
+        <option value="@{base-Volonte} + @{exal-Volonte}">Vol</option>
+        <option value="@{base-Psyche} + @{exal-Psyche}">Psy</option>
+        <option value="@{base-Chance} + @{exal-Chance}">Chn</option>
+        <option value="@{base-custom} + @{exal-custom}">Spé</option>
+      </select>
+      <button type='roll' class="sheet-skillbutton" value="&{template:d10skillcheck}{{name=@{character_name}}} {{roll_name=@{general_skill_res_physique}}} {{dice_name=@{dice}}} {{result=[[@{general_skilllevel_res_physique}+(@{Skill_general_attribute_select_res_physique})-d@{dice}cs1cf@{dice}]]}} {{threshold=[[@{general_skilllevel_res_physique}+(@{Skill_general_attribute_select_res_physique})]]}} "></button>
+      <input class="sheet-skill_hidden" value= "0" type="number" name="attr_general_skilllevel_res_physique_effective"/>
       <br/>
 
       <!--res_voile -->

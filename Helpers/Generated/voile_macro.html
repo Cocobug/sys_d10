@@ -115,7 +115,7 @@ La vitesse et la puissance de Voile augmente, ne laissant apparaitre qu'une silh
 ** Sang ** Un éclat de douleur dans un éclat d'acier, voile inflige [[@{God|b_sang_dmg}*@{Voile|repeating_magic-vital-skills_-Lk0Ikx5LI0341mCvRDZ_magic_vital_skilllevel}*@{Voile|multiple_seals}]] blessures sur une cible a [[@{Voile|repeating_magic-vital-skills_-Lk0Ikx5LI0341mCvRDZ_magic_vital_skilllevel}]] metres d'elle.
 <span class="bold"><span class="f4">[Contresang]</span></span>
 !setattr --name Hellsdoor --mod --blood_gate|[[-@{God|b_contresang_charge_level}*@{Voile|multiple_seals}]]
-!setattr --name Voile --Life_Points|[[{@{Voile|Life_Points}+[[@{God|b_contresang_soin}*@{Voile|multiple_seals}]],@{Voile|Life_Points|max}}kl1]]
+!setattr --name Voile --Life_Points|[[{@{Voile|Life_Points}+[[floor(@{Voile|pcthealing}*@{God|b_contresang_soin}/100)*@{Voile|multiple_seals}]],@{Voile|Life_Points|max}}kl1]]
 !setattr --name Voile --multiple_seals|1
 /w Voile Vous regagnez [[@{God|b_contresang_soin}*@{Voile|repeating_magic-vital-skills_-Lk0J6g4u8NBNAFB3asT_magic_vital_skilllevel}*@{Voile|multiple_seals}]] points de vie
 ** Contresang ** Le sang jaillit des veines de la main gauche de Voile pour combler les blessures.

@@ -160,6 +160,9 @@ on("chat:message", function(msg) {
 
     if (return_data.nb_hit>=Math.floor(hit_percent*len)){
         return_data.is_hit=1;
+        if(d_vars.action=="e"&&return_data.nb_hit==0) {
+            return_data.is_hit=0;
+        }
     }
     if (return_data.nb_crit>=needed_to_crit){
         return_data.is_crit=1;
@@ -222,8 +225,8 @@ function show_rolls(who,d_vars){
 
     //Add the rolls
 
-    msg+=add_thoose_dices(d_vars,d_vars.results,"",m_esq,m_crit);
-    if (d_vars.fauchage!=0) msg+=add_thoose_dices(d_vars,d_vars.cleave,"Fauchage: ",m_esq,m_crit);
+    msg+=add_thoose_dices(d_vars,d_vars.results,"",m_esq,m_crit,dice_stats);
+    if (d_vars.fauchage!=0) msg+=add_thoose_dices(d_vars,d_vars.cleave,"Fauchage: ",m_esq,m_crit,dice_stats);
     if (d_vars.coup_d!=0) msg_adds+="<tr><td class='sheet-additional'>Coup déchirant: "+d_vars.coup_d_results.join(" ")+"</tr></td>"; // Coup déchirant
     if (d_vars.technique_m!=0) msg_adds+="<tr><td class='sheet-additional'>Technique martiale: "+d_vars.technique_result+"</tr></td>"; // Technique martiale
     if (d_vars.relances!=0) msg_adds+="<tr><td class='sheet-additional'>Relances: "+d_vars.relances+"</tr></td>"; // Relances
@@ -247,8 +250,10 @@ function show_rolls(who,d_vars){
     } else {
         if (d_vars.action=="a"){
             msg+="<tr><td class='sheet-miss'>L'attaque ne touche pas sa cible (seuil "+d_vars.seuil+")</tr></td>";
-        } else if (d_vars.action=="d"||d_vars.action=="e"){
-            // Can't miss a block or a dodge
+        } else if (d_vars.action=="d"){
+            // Can't miss a block
+        }else if (d_vars.action=="e"){
+            msg+="<tr><td class='sheet-miss'>L'esquive échoue (seuil "+d_vars.seuil+")</tr></td>";
         } else {
             msg+="<tr><td class='sheet-fail'>L'action est un echec (seuil "+d_vars.seuil+")</tr></td>";
         }
@@ -258,7 +263,7 @@ function show_rolls(who,d_vars){
     //logit(msg_head+msg+msg_foot);
 }
 
-function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
+function add_thoose_dices(d_vars,results,name,m_esq,m_crit,dice_stats){
     logit(results);
     var dices="<tr><td class='sheet-line'> "+name;
     var is_below=0,is_acrit=0;
@@ -310,7 +315,7 @@ function add_thoose_dices(d_vars,results,name,m_esq,m_crit){
     if (d_vars.nb_2add!=0){dices+=")";};
     if (d_vars.nb_2sub!=0){dices+=" - "+d_vars.nb_2sub;};
     // Add everything to the sum
-    if (sum!=0){
+    if (dice_stats.is_hit==1){ // If is_below never becomes 2, the action never was a hit
         sum+=Math.floor(((sum*m_esq+d_vars.on_hit_c+d_vars.attribute))*m_crit)+d_vars.nb_2add;
     }
     sum+=d_vars.defense_i_0+d_vars.exploiter_p_0+d_vars.charge+d_vars.technique_result+d_vars.encaissement_result;

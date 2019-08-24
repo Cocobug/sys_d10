@@ -9,7 +9,7 @@
 <pre>
 <span class="bold">Characters/frene.ini</span>
 <span class="bold"><span class="f4">[start]</span></span>
-!setattr --name Jinyah --temp_dmg|0 --temp_pdmg|0 --temp_esq|0 --temp_def|0 --temp_pdef|0 --regen|0 --dot|0 --frostdamage|0 --frostshield|0 --mana|@{Jinyah|mana|max} --pctreceived_b|0 --pctreceived_s|0 --general_item_shield3|[[floor(@{Jinyah|repeating_magic-aspected-skills_-Lk-H3by-ofAR9GZF4QH_magic_aspected_skilllevel}*(@{Jinyah|elem_air_tot}/2+@{Eisvogel|elem_air_tot}+@{Jinyah|elem_omega})/@{God|b_garde_aspect})]] --colere_stacks|[[@{Jinyah|repeating_magic-aspected-skills_-Lk-H4mC0xWsyjFR0rGK_magic_aspected_skilllevel}@{God|b_colere_max}]] --elem_omega|0 --pcthealing|100 --shieldregen|0 --grieviouswounds|1
+!setattr --name Jinyah --temp_dmg|0 --temp_pdmg|0 --temp_esq|0 --temp_def|0 --temp_pdef|0 --regen|0 --dot|0 --frostdamage|0 --frostshield|0 --mana|@{Jinyah|mana|max} --pctreceived_b|0 --pctreceived_s|0 --general_item_shield3|[[floor(@{Jinyah|repeating_magic-aspected-skills_-Lk-H3by-ofAR9GZF4QH_magic_aspected_skilllevel}*(@{Jinyah|elem_air_tot}/2+@{Eisvogel|elem_air_tot})/@{God|b_garde_aspect})]] --colere_stacks|[[@{Jinyah|repeating_magic-aspected-skills_-Lk-H4mC0xWsyjFR0rGK_magic_aspected_skilllevel}@{God|b_colere_max}]] --elem_omega|0 --pcthealing|100 --shieldregen|0 --grieviouswounds|1
 /w Jinyah Début du combat
 /w Jinyah Si vous ne pouvez plus agir, votre aspect gagne [[floor(@{Jinyah|repeating_magic-aspected-skills_-Lk-H0A4ZvDP4YcBL1NS_magic_aspected_skilllevel}@{God|b_simulation_aspect})]] actions supplémentaires jusqu'à la reprise de contrôle du personnage.
 /w Jinyah Reduit les dégats subits de [[floor(@{Jinyah|repeating_magic-aspected-skills_-Lk-H3by-ofAR9GZF4QH_magic_aspected_skilllevel}*(@{Jinyah|elem_air_tot}/2+@{Eisvogel|elem_air_tot}+@{Jinyah|elem_omega})/@{God|b_garde_aspect})]]
@@ -34,6 +34,7 @@
 <span class="bold"><span class="f4">[revigoration]</span></span>
 !setattr --name Jinyah --mod --mana|-2
 **Revigoration** [Coût : 2]  Soigne @{target|target|character_name} de [[floor(@{target|target|frostshield}*@{Jinyah|repeating_magic-aspected-skills_-Lk-Gm0UQajXFD5z2zat_magic_aspected_skilllevel}*(@{Jinyah|elem_eau_tot}/2+@{Eisvogel|elem_eau_tot}+@{Jinyah|elem_omega})/@{God|b_revigoration})]] points de vie.
+[Appliquer le soin](!&amp;#13;#healit [[{floor(@{Jinyah|pcthealing}*(@{target|target|Life_Points}+@{target|target|frostshield}*@{Jinyah|repeating_magic-aspected-skills_-Lk-Gm0UQajXFD5z2zat_magic_aspected_skilllevel}*(@{Jinyah|elem_eau_tot}/2+@{Eisvogel|elem_eau_tot}+@{Jinyah|elem_omega})/@{God|b_revigoration})/100),@{target|target|Life_Points|max}}kl1]]
 <span class="bold"><span class="f4">[transfert_froid]</span></span>
 !setattr --name Jinyah --mod --mana|-3
 **Transfert de Froid** [Coût : 3] Test DD+[[floor((@{Jinyah|elem_glace_tot}/2+@{Eisvogel|elem_glace_tot}+@{Jinyah|elem_omega})/@{God|b_transfert})]] pour resister. Transfère jusqu'à @{Jinyah|repeating_magic-aspected-skills_-Lk-Gn2T4CvHCEcxPHaZ_magic_aspected_skilllevel} effets Morsure de l'hiver d'une cible ennemie vers une autre au choix.
