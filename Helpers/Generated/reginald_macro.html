@@ -100,7 +100,7 @@ Une auréole se forme au dessus de votre tête et une voix angélique vous murmu
 /w Reginald Pour chaque arcanum posée ce tour-ci, dupliquez votre arcana. Faites jusqu'a [[@{God|b_dilluvium}*@{Reginald|repeating_magic-arcanist-skills_-LkQWi6hcqVjtGkIkJZV_magic_arcanist_skilllevel}]] copies de la sorte.
 **[Arcane Ultime : Diluvium]** Vous créez une tempete dans les arcanes, le réel se met a ployer sous le torrent d'energie que vous déployez.
 <span class="bold"><span class="f4">[tenacitas]</span></span>
-!setattr --name @{target|target|character_name} --fb-header &quot;Tenacitas&quot; --fb-content &quot;L'arcane augmente les resistances de _CHARNAME_ de _TCURJ_&quot; --pctreceived_s|[[{@{target|target|pctreceived_s}- floor((?{Magna Arcanum|0}*@{God|b_power_arcana}+(@{Reginald|elem_bois_tot}+@{Reginald|elem_omega}))*@{God|b_tenacitas}),-99}kh1]]
+!setattr --name @{target|target|character_name} --fb-from Reginald --fb-public --fb-header Tenacitas --fb-content L'arcane augmente les resistances de _CHARNAME_ de _TCUR0_ --pctreceived_s|[[{@{target|target|pctreceived_s}- floor((?{Magna Arcanum|0}*@{God|b_power_arcana}+(@{Reginald|elem_bois_tot}+@{Reginald|elem_omega}))*@{God|b_tenacitas}),-99}kh1]]
 **[Arcane avancée : Tenacitas]** Un grand rai de lumière entoure @{target|target|character_name} augmentant ses defenses.
 <span class="bold"><span class="f4">[major:marcor]</span></span>
 Diminuez la régénération de la cible de [[[[floor(((@{Reginald|elem_magma_tot}+@{Reginald|elem_omega})+?{Magna Arcanum|0}*@{God|b_power_arcana})*@{God|b_marcor})]]d@{God|b_marcor_d}]] points
