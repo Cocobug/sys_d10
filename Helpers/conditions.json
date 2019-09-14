@@ -16,6 +16,8 @@
 "aura":{"name":"Auréole","description":"<p>Si vous deviez subir des dégâts létaux, devenez inciblable pendant une action à la place.</p><p>Si vous êtes sous l'effet d'une ou plusieurs altérations d'état négatives, retirez-les.</p>","icon":"angel-outfit"},
 "tenacity":{"name":"Tenacité","description":"<p>Vos défenses sont grandement augmentées.</p>","icon":"white-tower"},
 "benediction":{"name":"Bénédiction de l'Hiver","description":"<p>Votre force est grandement augmentée par la force du gel.</p>","icon":"strong"},
-"defiance":{"name":"Défi","description":"<p>Dans la traque de votre vraie Némésis, votre corps et votre etre sont infusés d'une immense puissance.</p>","icon":"all-for-one"},
+"challenge":{"name":"Challenge","description":"<p><i>Par ma promesse maudite; A nouveau je serai entier.</i></p>Dans la traque de votre vraie Némésis, votre corps est infusé d'une immense puissance.</p>","icon":"all-for-one"},
+"defiance":{"name":"Défiance","description":"<p><i>Par mon sceau maudit; Eternel je resterai.</i></p>Dans la traque de votre vraie Némésis, votre corps et votre essence est infusé d'une inextinguible resistance.</p>","icon":"broken-shield"},
+"blood":{"name":"Sang des Déchus","description":"<p><i>Par mon sang maudit; A le renouveau j'apporterai.</i></p>Dans la traque de votre vraie Némésis, votre ame est infusée d'un brulant désir.</p>","icon":"chained-heart"},
 "tired":{"name":"Fatigue aggravée","description":"<p>Votre régénération de fatigue est grandement diminuée et vous ne recuperez pas du stress normalement.</p>","icon":"sleepy"}
 }}
