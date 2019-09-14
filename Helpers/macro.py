@@ -28,12 +28,9 @@ errors={
 god=configparser.ConfigParser(inline_comment_prefixes="#")
 god.read("Characters/God.ini")
 
-
-
-
 def write_index(output,suffix):
     list=[f for f in listdir(output) if (f != "index.html" and isfile(join(output, f)))]
-    list.sort()
+    list.sort() #key=lambda a: a[:6]
     towrite="""<html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -50,7 +47,9 @@ def write_index(output,suffix):
     towrite+="""    </pre>
     </body>
 </html>"""
-
+    if output=="tty":
+        print(towrite)
+        return
     with open(join(output,"index.html"),"w") as f:
         f.write(towrite)
 
@@ -196,7 +195,7 @@ def diff(characters,output,version,suffix):
     else:
         proc=subprocess.Popen(list,stdout=subprocess.PIPE)
         pi=subprocess.check_output(("./ansi2html.sh"),stdin=proc.stdout)
-        date=datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
+        date=datetime.datetime.now().strftime("%y%m%d %Hh%M")
         save_file=join(output,"{}{}.html".format(date,suffix))
         with open(save_file,"wb") as file:
             file.write(pi)
