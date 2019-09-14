@@ -54,8 +54,11 @@ on("chat:message", function(msg) {
 			if (d_vars.encaissement!=0) { // Parsing the tanking
                 d_vars.encaissement_result=JSON.parse(ops[0]["content"])["rolls"][dec]["results"][0]["v"]; dec+=2;
                 if ((d_vars.encaissement+d_vars.attribute-d_vars.encaissement_result)>0){
-					if (d_vars.encaissement_result==1) d_vars.encaissement_result=(d_vars.attribute+d_vars.encaissement*2)*2;
-	                else d_vars.encaissement_result=d_vars.attribute+d_vars.encaissement*2;
+					if (d_vars.encaissement_result==1) d_vars.encaissement_result=(d_vars.encaissement-d_vars.encaissement_result)*4;
+	                else {
+                        d_vars.encaissement_result=(d_vars.encaissement-d_vars.encaissement_result)*2;
+                        if (d_vars.encaissement_result<0) d_vars.encaissement_result=0;
+                    }
 				} else {
 					d_vars.encaissement_result=0;
 				}
