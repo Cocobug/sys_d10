@@ -125,10 +125,10 @@
     });
   });
   // Life_Points
-  on("change:base-Force change:base-Agilite change:base-Volonte change:general_skilllevel_Endurance_surnaturelle change:general_skilllevel_Health_supp change:transcendence", function() {
-    getAttrs(["base-Force","base-Agilite","base-Volonte","general_skilllevel_Endurance_surnaturelle","transcendence", "general_skilllevel_Health_supp"], function(values) {
-      setAttrs({"Life_Points_max":((Number(values['base-Force'])+Number(values['base-Volonte'])+Number(values['base-Agilite']))*2+Number(values.general_skilllevel_Endurance_surnaturelle)*4+Number(values.general_skilllevel_Health_supp)+25)*Math.pow(2,Number(values.transcendence)-3)});
-      setAttrs({"Life_Points_maximum":((Number(values['base-Force'])+Number(values['base-Volonte'])+Number(values['base-Agilite']))*2+Number(values.general_skilllevel_Endurance_surnaturelle)*4+Number(values.general_skilllevel_Health_supp)*100+25)*Math.pow(2,Number(values.transcendence-3))});
+  on("change:base-Force change:base-Agilite change:base-Volonte change:general_skilllevel_Endurance_surnaturelle change:general_skilllevel_Health_supp change:transcendence change:general_skilllevel_Health_diff", function() {
+    getAttrs(["base-Force","base-Agilite","base-Volonte","general_skilllevel_Endurance_surnaturelle","transcendence", "general_skilllevel_Health_supp","general_skilllevel_Health_diff"], function(values) {
+      setAttrs({"Life_Points_max":((Number(values['base-Force'])+Number(values['base-Volonte'])+Number(values['base-Agilite']))*2+Number(values.general_skilllevel_Endurance_surnaturelle)*4+Number(values.general_skilllevel_Health_supp)*100+Number(values.general_skilllevel_Health_diff)+25)*Math.pow(2,Number(values.transcendence-3))});
+      setAttrs({"Life_Points_maximum":((Number(values['base-Force'])+Number(values['base-Volonte'])+Number(values['base-Agilite']))*2+Number(values.general_skilllevel_Endurance_surnaturelle)*4+Number(values.general_skilllevel_Health_supp)*100+Number(values.general_skilllevel_Health_diff)+25)*Math.pow(2,Number(values.transcendence-3))});
     });
   });
   // Endurance_Points
@@ -1034,7 +1034,8 @@
       <br/>
 
       <input class="sheet-skill_name" style="margin-right: 4px;" type="text" name="attr_general_skill_Health_supp" disabled="true" value="Endurance inhumaine" />
-      <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" name="attr_general_skilllevel_Health_supp" title="Points de vie supplémentaires" />
+      <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" name="attr_general_skilllevel_Health_diff" title="Points de vie supplémentaires" />
+      <input class="sheet-skill_name" value="0" style="margin-right: 4px;" type="number" name="attr_general_skilllevel_Health_supp" title="Points de vie supplémentaires x100" />
       <br/>
       <!--defensive_combat -->
       <fieldset class="repeating_defensive-combat-skills">

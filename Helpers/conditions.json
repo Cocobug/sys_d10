@@ -11,6 +11,7 @@
 "grievious":{"name":"Dégâts aggravés","description":"<p>Les soins et régénérations sont moins efficaces sur vous.</p>","icon":"half-heart"},
 "restrained":{"name":"Restreint","description":"<p>Vous ne pouvez effectuer d'actions de déplacement.</p>","icon":"fishing-net"},
 "medication":{"name":"Médication","description":"<p>Vous êtes sous l'effet d'une médication.</p>","icon":"drink-me"},
+"snap":{"name":"Fatalité inexorable","description":"<p>Lié jusqu'a l'ame par les chaines de la causalité, chaque action est une torture pour vous.</p>","icon":"edge-crack"},
 "altphy":{"name":"Altération Physique","description":"<p>Vos caractéristiques physiques sont altérées.</p>","icon":"red"},
 "altmag":{"name":"Altération Magique","description":"<p>Vos caractéristiques magiques sont altérées.</p>","icon":"blue"},
 "aura":{"name":"Auréole","description":"<p>Si vous deviez subir des dégâts létaux, devenez inciblable pendant une action à la place.</p><p>Si vous êtes sous l'effet d'une ou plusieurs altérations d'état négatives, retirez-les.</p>","icon":"angel-outfit"},
